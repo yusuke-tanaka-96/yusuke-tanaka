@@ -46,8 +46,8 @@
     - swap設定用playbookの実装
     - inventoryの整理
 - Terraformコードの実装、改修
-    - EC2→tfvarsファイル、モジュールを使用した管理
-    - EBS、SG、Route53各種レコードファイル→tfvarsファイルによる管理
+    - EC2→tfvarsファイル、モジュールを使用した実装、管理
+    - EBS、SG、Route53各種レコードファイル→tfvarsファイルによる実装、管理
     - ALB→WEBサーバーの負荷分散、リスナールール等の実装
     - Lambda→cloudwatchアラームをトリガーとした通信ドメインフェイルオーバー実行機能の実装（Pythonを使用）
     - Route53関連→旧環境からのAWS環境へのドメイン移行、管理。ホストゾーン、各種レコード（CNAME、A、TXT、エイリアス等）、ルーティング設定（シンプルルーティング、加重ルーティング）の実装
