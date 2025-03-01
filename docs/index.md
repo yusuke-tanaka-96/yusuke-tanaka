@@ -55,7 +55,7 @@
     - Terraform管理外リソースの取り込み（importブロックを使用。EC2からSG系、ALB、Kinesi、Firehoseなど）
 - ACM関連。ACM証明書発行用自動化ツールの実装（シェルスクリプト）、ワイルドカード証明書発行、使用
 - ドメイン動作確認用ツールの実装（シェルスクリプト）nslookupやcurl、ping、dig等
-- cloudwatchのダッシュボード、AWS Grafana 、Zabbixによるリソースの監視、モニタリング、設定
+- cloudwatchのダッシュボードの設定、Grafana 、Zabbixによるリソースの監視、モニタリング
 - 262ホストゾーンを別のAWSアカウントへ移行。
   → ドメイン名ごとに1つのフォルダを切って管理していたため、262個のtfstateファイルを移行しました。262個手動で移行するのはミスに繋がるため、シェルで実施する事を提案し、検証を行い入念に手順を作成して実施しました。
 - pgpool起動時の動作追加。
@@ -73,6 +73,7 @@
 - TeraTerm
 - Rmote Desktop
 - Redmine
+- Jira
 - Word、Excel
 - Outlook、Teams
 - Slack
