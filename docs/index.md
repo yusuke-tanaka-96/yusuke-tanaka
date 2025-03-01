@@ -52,7 +52,7 @@
     - Lambda→cloudwatchアラームをトリガーとした通信ドメインフェイルオーバー実行機能の実装（Pythonを使用）
     - Route53関連→旧環境からのAWS環境へのドメイン移行、管理。ホストゾーン、各種レコード（CNAME、A、TXT、エイリアス等）、ルーティング設定（シンプルルーティング、加重ルーティング）の実装
     - cloud watch→通知したい内容のアラーム、メトリクス作成
-    - Terraform管理外リソースの取り込み（importブロックを使用）
+    - Terraform管理外リソースの取り込み（importブロックを使用。EC2からSG系、ALB、Kinesi、Firehoseなど）
 - ACM関連。ACM証明書発行用自動化ツールの実装（シェルスクリプト）、ワイルドカード証明書発行、使用
 - ドメイン動作確認用ツールの実装（シェルスクリプト）nslookupやcurl、ping、dig等
 - cloudwatchのダッシュボード、AWS Grafana 、Zabbixによるリソースの監視、モニタリング、設定
