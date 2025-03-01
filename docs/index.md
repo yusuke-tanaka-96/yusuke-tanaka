@@ -44,10 +44,10 @@
     - playbook作成 → EC2への各種ミドル、DBインストール用AL2023、Rocky、RHEL9ごとに作り分け）、OpenSSHアップデート用、swap設定用など
     - inventoryの整理
 - Terraformコードの実装、改修
-    - EC2、IAM、routtable、VPC、SG、ALB、CloudWatch、S3など
-    - Lambda→cloudwatchアラームをトリガーとしたドメインフェイルオーバー実行機能の実装（Pythonを使用）
-    - Route53関連→旧環境からのAWS環境へのドメイン移行、管理。ホストゾーン、各種レコード（CNAME、A、TXT、エイリアス等）、ルーティング設定（シンプルルーティング、加重ルーティング）の実装
-    - Terraform管理外リソースの取り込み（importブロックを使用。EC2からSG系、ALB、Kinesi、Firehoseなど様々）
+    - EC2、IAM、Rout Table、VPC、SG、ALB、Route53、CloudWatch、S3、Kinesis、Firehoseなど
+    - Terraform管理外リソースの取り込み
+- Lambda（Pythonを使用）
+    - cloudwatchアラームをトリガーとしたドメインフェイルオーバー実行機能の実装
 - ACM関連。ACM証明書発行用自動化ツールの実装（シェルスクリプト）、ワイルドカード証明書の使用。
 - cloudwatchのダッシュボードの設定、Grafana 、Zabbixによるリソースの監視、モニタリング
 - 262ホストゾーンを別のAWSアカウントへ移行。
@@ -75,12 +75,10 @@
 - Slack
 
 #### 4.学んだ事
-- コードによるチームでのインフラ開発、管理
-- 運用を見据えた可視性に優れたコードの実装、ディレクトリ設計、資料作成
+- Githubによるチームでのインフラ開発
 - TerraformやAnsibleの特性
+- 運用を見据えた可視性に優れたコードの実装、ディレクトリ設計、資料作成
 - 監視ツールによるリソースの監視、モニタリング
-- Redis、pgpool、proxy、smtp等オープンソースの知見
-- Githubを用いたチーム開発
 - 担当タスクの詳細化・スケジュール見積、チケットでのタスク管理
 
 ### 官公庁向けサーバ構築
@@ -260,6 +258,10 @@
 - 建設資材の販売経験（鉄関連、超強度発砲スチロール素材、災害関連商材、緑化用巨大不織布など）
 - 現場対応
 - Excel、PowerPoint中級程度のスキル
+
+## 業務外活動
+- Pythonによる個人用ツールの開発
+- たまに友人が受注した業務のお手伝い
 
 ## 意欲・興味
 - 新しい技術に対して積極的に学習を行い、スキルアップに努めます
