@@ -4,17 +4,17 @@
 @import "jekyll-theme-cayman";
 
 :root {
-  --bg-primary: #0d1117;
-  --bg-secondary: #161b22;
-  --bg-tertiary: #21262d;
-  --text-body: #8ec5e0;
-  --text-heading: #e6edf3;
-  --text-strong: #e6edf3;
-  --accent: #58a6ff;
-  --accent-hover: #79b8ff;
-  --border: #30363d;
-  --header-bg-start: #1a2332;
-  --header-bg-end: #0d1117;
+  --bg-primary: #0b1220;
+  --bg-secondary: #111b2e;
+  --bg-tertiary: #1a2540;
+  --text-body: #b8c3e6;
+  --text-heading: #eef3ff;
+  --text-strong: #eef3ff;
+  --accent: #6ee7ff;
+  --accent-hover: #a78bfa;
+  --border: rgba(255, 255, 255, 0.10);
+  --header-bg-start: #111b2e;
+  --header-bg-end: #0b1220;
 }
 
 body {
