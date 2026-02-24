@@ -1,0 +1,151 @@
+---
+---
+
+@import "jekyll-theme-cayman";
+
+:root {
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary: #21262d;
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --accent: #58a6ff;
+  --accent-hover: #79b8ff;
+  --border: #30363d;
+  --header-bg-start: #1a2332;
+  --header-bg-end: #0d1117;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+// ヘッダー
+.page-header {
+  background-image: linear-gradient(135deg, var(--header-bg-start), var(--header-bg-end));
+  border-bottom: 1px solid var(--border);
+}
+
+.project-name {
+  color: var(--text-primary);
+}
+
+.project-tagline {
+  color: var(--text-secondary);
+}
+
+// メインコンテンツ
+.main-content {
+  h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+  }
+
+  h1 {
+    border-bottom: 1px solid var(--border);
+  }
+
+  h2 {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.3em;
+  }
+
+  a {
+    color: var(--accent);
+
+    &:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+  }
+
+  // テーブル
+  table {
+    th {
+      background-color: var(--bg-tertiary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    td {
+      background-color: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    tr:nth-child(even) td {
+      background-color: var(--bg-tertiary);
+    }
+  }
+
+  // コードブロック
+  code {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+  }
+
+  pre {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+  }
+
+  // 水平線
+  hr {
+    border-color: var(--border);
+  }
+
+  // リスト
+  ul, ol {
+    color: var(--text-primary);
+  }
+
+  // 強調
+  strong {
+    color: var(--text-primary);
+  }
+}
+
+// 印刷時は白背景に切り替え
+@media print {
+  body {
+    background-color: #fff;
+    color: #000;
+  }
+
+  .page-header {
+    background-image: none;
+    background-color: #fff;
+    border-bottom: 2px solid #000;
+  }
+
+  .project-name {
+    color: #000;
+  }
+
+  .main-content {
+    h1, h2, h3, h4, h5, h6 {
+      color: #000;
+    }
+
+    a {
+      color: #000;
+      text-decoration: underline;
+    }
+
+    table {
+      th {
+        background-color: #f0f0f0;
+        color: #000;
+        border-color: #ccc;
+      }
+
+      td {
+        background-color: #fff;
+        color: #000;
+        border-color: #ccc;
+      }
+    }
+  }
+}
