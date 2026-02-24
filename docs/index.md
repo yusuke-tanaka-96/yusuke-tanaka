@@ -41,10 +41,7 @@
 | 期間 | プロジェクト内容 | 組織/役割 |
 | ---- | ---- | ---- |  
 | 2025年10月1日~現在 | [大手美容室チェーン 基幹システム構築](#fa機器総合メーカー各種webシステムのliftshiftによるawsクラウド移行) | インフラチーム3人 役割：チームリーダー |  
-| 2025年4月1日~2025年10月末 | [エンタープライズ向けweb3ノードサービス構築](#エンタープライズ向けweb3ノードサービス構築) | 組織50人  インフラチーム6人 役割：チームリーダー |  
-
-
-
+| 2025年4月1日~2025年10月末 | [エンタープライズ向けweb3ノードサービス構築](#エンタープライズ向けweb3ノードサービス構築) | 組織50人  インフラチーム6人 役割：チームリーダー |
 
 ### 大手美容室チェーン 基幹システム構築
 
@@ -63,14 +60,9 @@
 
 #### 3.技術スタック
 - AWS
-- cursor
 - Terraform
-- Github
+- GitHub
 - Linux
-- backlog
-- notion
-- google meet
-- Slack
 
 #### 4.成果・取り組み
 
@@ -92,23 +84,16 @@
 - 顧客調整
 - チーム横断窓口
 - AWSリソース構築
-  - Terraformによる作成。dev, test1, test2, prod1, prod2の5環境。各環境、平行した密なスケジュールでの作成、セキュリティ設定など大変だった事を書く
+  - Terraformによる作成。dev, test1, test2, prod1, prod2の5環境
 - チームタスク管理
-
 
 #### 3.技術スタック
 - AWS
-- VS code
 - Terraform
-- Github
+- GitHub
 - Linux
-- Jira
-- confluence
-- Outlook、Teams
-- Slack
 
 #### 4.成果・取り組み
-
 
 ### 株式会社プロトシステム(2023/08~)
 - 資本金：11,000千円　
@@ -149,25 +134,18 @@
 - pgpool運用手順書の改修
   → pgpool初見の人でも復旧などを行えるレベルで作成中
 
-
 #### 3.技術スタック
-- AWS cloud9
-- VS code
+- AWS（EC2、IAM、VPC、ALB、Route53、CloudWatch、S3、Lambda、ACM、Kinesis、Firehose）
 - Terraform
 - Ansible
-- Github
-- Linux
-- Windows
-- TeraTerm
-- Rmote Desktop
-- Redmine
-- Jira
-- Word、Excel
-- Outlook、Teams
-- Slack
+- GitHub、GitHub Actions
+- Linux（AL2023、Rocky、RHEL9）
+- Python、ShellScript
+- Grafana、Zabbix
+- PostgreSQL、pgpool
 
 #### 4.成果・取り組み
-- Github、Github Actionsによるチームでのインフラ開発
+- GitHub、GitHub Actionsによるチームでのインフラ開発
 - TerraformやAnsibleの特性
 - 運用を見据えた可視性に優れたコードの実装、ディレクトリ設計、資料作成
 - 監視ツールによるリソースの監視、モニタリング
@@ -188,14 +166,7 @@
 #### 3.技術スタック
 - Azure
 - Linux
-- Windows
-- TeraTerm
-- WinSCP
-- Winshot
-- サクラエディタ
-- Rmote Desktop
-- Word、Excel
-- Outlook、Teams
+- Windows Server
 
 #### 4.成果・取り組み
 - Azure Portalの実務経験
@@ -209,7 +180,6 @@
 
 #### 1.プロジェクト概要
 - 仮想サーバ数百台
-#### 1.1.経緯
 - 現行環境更改に伴う新規機器での検証環境・本番環境構築、移行検討
   
 #### 2.担当業務
@@ -221,17 +191,13 @@
 - ネットワーク構築(vSwitch、ポートグループ)
 - Zabbix構築
 
-
 #### 3.技術スタック
 - AWS
-- VMware
+- VMware（vSphere、vSwitch）
 - Linux
-- Windows
-- TeraTerm
-- サクラエディタ
-- Word、Excel
-- Outlook、Teams
-- slack
+- ClusterPRO
+- LifeKeeper
+- Zabbix
 
 #### 4.成果・取り組み
 - AWSの基本操作
@@ -243,9 +209,7 @@
 
 #### 1.プロジェクト概要
 - 本番環境：63台、検証環境20台
-
-#### 1.1.経緯
-- クラウド(Azure)基盤構築PJの結合テストフェーズにおいて、人員が必要になりスポットで参画。
+- クラウド(Azure)基盤構築PJの結合テストフェーズにスポットで参画
   
 #### 2.担当業務
 - NFSサーバ構築(本番2台、検証1台構成/BRDB、Pacemaker、LB)
@@ -258,17 +222,12 @@
 - Proxy、NFS、NTP関連の結合・単体テスト
 - 関連する詳細設計書修正
 
-
 #### 3.技術スタック
-- AWS
-- VMware
+- Azure
 - Linux
-- Windows
-- TeraTerm
-- サクラエディタ
-- Word、Excel
-- Outlook、Teams
-- slack
+- Pacemaker、DRBD
+- PostgreSQL
+- NFS
 
 #### 4.成果・取り組み
 - Azureの基本操作
@@ -306,9 +265,6 @@
 - 竣工確認、進捗報告など
 
 #### 3.技術スタック
-- Windows10
-- Excel、PowerPoint
-- Teams
 - XGMC-2016
 - FW-7040
 
@@ -336,9 +292,6 @@
 - 見積書、契約書、プレゼン資料、議事録、他資料作成等
 
 #### 3.技術スタック
-- 社内ツール
-- Windows
-- Microsoft製品各種
 - CAD
 
 #### 4.成果・取り組み
