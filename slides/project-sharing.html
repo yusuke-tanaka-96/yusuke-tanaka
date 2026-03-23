@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プロジェクト共有会 - 田中雄介</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  .slide {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    padding: 60px 80px;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .slide.active { display: flex; }
+
+  /* Title slide */
+  .slide-title {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  }
+  .slide-title h1 {
+    font-size: 2.8em;
+    font-weight: 900;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 24px;
+    line-height: 1.4;
+  }
+  .slide-title .subtitle {
+    font-size: 1.3em;
+    color: #94a3b8;
+    margin-bottom: 40px;
+  }
+  .slide-title .meta {
+    font-size: 1em;
+    color: #64748b;
+  }
+
+  /* Section divider */
+  .slide-section {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+  .slide-section .section-number {
+    font-size: 1em;
+    color: #60a5fa;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 16px;
+  }
+  .slide-section h2 {
+    font-size: 2.6em;
+    font-weight: 900;
+    color: #f1f5f9;
+    margin-bottom: 16px;
+  }
+  .slide-section .section-sub {
+    font-size: 1.2em;
+    color: #94a3b8;
+  }
+
+  /* Content slides */
+  h2 {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #60a5fa;
+    margin-bottom: 36px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #1e3a5f;
+  }
+
+  h3 {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #a78bfa;
+    margin-bottom: 12px;
+    margin-top: 20px;
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  ul li {
+    font-size: 1.15em;
+    line-height: 1.7;
+    padding: 6px 0 6px 28px;
+    position: relative;
+    color: #cbd5e1;
+  }
+
+  ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: #60a5fa;
+    font-weight: 700;
+  }
+
+  .highlight {
+    color: #fbbf24;
+    font-weight: 700;
+  }
+
+  .tag {
+    display: inline-block;
+    background: #1e3a5f;
+    color: #60a5fa;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    margin: 4px 4px;
+  }
+
+  .tag.purple {
+    background: #2e1065;
+    color: #a78bfa;
+  }
+
+  .tag.green {
+    background: #14532d;
+    color: #4ade80;
+  }
+
+  .tag.amber {
+    background: #451a03;
+    color: #fbbf24;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 12px 0;
+  }
+
+  /* Two column layout */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    flex: 1;
+  }
+
+  .col { }
+
+  .col h3:first-child { margin-top: 0; }
+
+  /* Comparison layout */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 0;
+    align-items: start;
+    flex: 1;
+  }
+
+  .compare-box {
+    background: #1e293b;
+    border-radius: 16px;
+    padding: 32px;
+  }
+
+  .compare-box.before {
+    border: 2px solid #475569;
+  }
+
+  .compare-box.after {
+    border: 2px solid #60a5fa;
+    box-shadow: 0 0 30px rgba(96, 165, 250, 0.1);
+  }
+
+  .compare-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    color: #60a5fa;
+  }
+
+  .compare-box h3 {
+    margin-top: 0;
+    font-size: 1.15em;
+  }
+
+  .compare-box ul li {
+    font-size: 1em;
+  }
+
+  .box-label {
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .box-label.before-label { color: #94a3b8; }
+  .box-label.after-label { color: #60a5fa; }
+
+  /* Stats row */
+  .stats {
+    display: flex;
+    gap: 32px;
+    margin: 20px 0;
+  }
+
+  .stat {
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 20px 28px;
+    text-align: center;
+    flex: 1;
+    border: 1px solid #334155;
+  }
+
+  .stat-value {
+    font-size: 2em;
+    font-weight: 900;
+    color: #60a5fa;
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 0.85em;
+    color: #94a3b8;
+    margin-top: 4px;
+    display: block;
+  }
+
+  /* Progress / navigation */
+  .nav {
+    position: fixed;
+    bottom: 24px;
+    right: 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    z-index: 100;
+  }
+
+  .nav button {
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #94a3b8;
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: all 0.2s;
+  }
+
+  .nav button:hover {
+    background: #334155;
+    color: #e2e8f0;
+  }
+
+  .page-indicator {
+    color: #64748b;
+    font-size: 0.9em;
+    min-width: 60px;
+    text-align: center;
+  }
+
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #60a5fa, #a78bfa);
+    transition: width 0.3s ease;
+    z-index: 100;
+  }
+
+  /* Emphasis box */
+  .emphasis {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border-left: 4px solid #60a5fa;
+    padding: 20px 28px;
+    border-radius: 0 12px 12px 0;
+    margin: 16px 0;
+    font-size: 1.1em;
+    color: #e2e8f0;
+    line-height: 1.6;
+  }
+
+  /* Agenda */
+  .agenda-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid #1e293b;
+  }
+
+  .agenda-num {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #60a5fa, #a78bfa);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 1.3em;
+    color: #0f172a;
+    flex-shrink: 0;
+  }
+
+  .agenda-text {
+    font-size: 1.2em;
+    color: #e2e8f0;
+  }
+
+  .agenda-time {
+    font-size: 0.85em;
+    color: #64748b;
+    margin-left: auto;
+  }
+
+  /* Summary slide */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    flex: 1;
+    align-items: start;
+  }
+
+  .summary-card {
+    background: #1e293b;
+    border-radius: 16px;
+    padding: 28px;
+    border: 1px solid #334155;
+    height: 100%;
+  }
+
+  .summary-card h3 {
+    margin-top: 0;
+    font-size: 1.1em;
+    margin-bottom: 16px;
+  }
+
+  .summary-card ul li {
+    font-size: 0.95em;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<!-- Slide 1: Title -->
+<div class="slide slide-title active" data-slide="1">
+  <h1>直近プロジェクト共有<br>NTTデジタル → 美容室チェーン</h1>
+  <div class="subtitle">この半年で変わった開発スタイルとAI活用</div>
+  <div class="meta">2026.03.24 / 田中雄介 / プロジェクト共有会</div>
+</div>
+
+<!-- Slide 2: Agenda -->
+<div class="slide" data-slide="2">
+  <h2>今日話すこと</h2>
+  <div class="agenda-item">
+    <div class="agenda-num">1</div>
+    <div class="agenda-text">NTTデジタル案件の振り返り</div>
+    <div class="agenda-time">〜5分</div>
+  </div>
+  <div class="agenda-item">
+    <div class="agenda-num">2</div>
+    <div class="agenda-text">美容室チェーン案件の紹介</div>
+    <div class="agenda-time">〜5分</div>
+  </div>
+  <div class="agenda-item">
+    <div class="agenda-num">3</div>
+    <div class="agenda-text">半年で変わったこと：AI活用と開発スタイルの進化</div>
+    <div class="agenda-time">〜5分</div>
+  </div>
+</div>
+
+<!-- Slide 3: Section 1 -->
+<div class="slide slide-section" data-slide="3">
+  <div class="section-number">Section 01</div>
+  <h2>NTTデジタル案件</h2>
+  <div class="section-sub">エンタープライズ向け Web3 ノードサービス構築</div>
+</div>
+
+<!-- Slide 4: NTTデジタル概要 -->
+<div class="slide" data-slide="4">
+  <h2>プロジェクト概要</h2>
+  <ul>
+    <li>エンタープライズ向け<span class="highlight">ブロックチェーンノードのマネージドサービス</span>を新規構築</li>
+    <li>事業者・開発者がAPI経由でBitcoin/EthereumのRPCエンドポイントを利用可能にする</li>
+    <li><span class="highlight">5環境</span>（dev / test1 / test2 / prod1 / prod2）× マルチVPC構成</li>
+    <li>組織約30名。インフラチームとして参画</li>
+    <li><span class="highlight">6〜7ヶ月</span>で本番リリース完遂 → 運用引き継ぎまで担当</li>
+  </ul>
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-value">30名</span>
+      <span class="stat-label">プロジェクト規模</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">5環境</span>
+      <span class="stat-label">マルチVPC</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">6〜7ヶ月</span>
+      <span class="stat-label">リリースまで</span>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 5: NTTデジタル 技術スタック -->
+<div class="slide" data-slide="5">
+  <h2>技術スタック</h2>
+  <div class="two-col">
+    <div class="col">
+      <h3>AWS</h3>
+      <div class="tags">
+        <span class="tag">VPC</span>
+        <span class="tag">EC2</span>
+        <span class="tag">ECS Fargate</span>
+        <span class="tag">Aurora PostgreSQL</span>
+        <span class="tag">Lambda</span>
+        <span class="tag">API Gateway</span>
+        <span class="tag">ALB</span>
+        <span class="tag">NLB</span>
+        <span class="tag">S3</span>
+        <span class="tag">CloudFront</span>
+        <span class="tag">Route53</span>
+        <span class="tag">WAF</span>
+        <span class="tag">KMS</span>
+        <span class="tag">Secrets Manager</span>
+        <span class="tag">ACM / Private CA</span>
+        <span class="tag">IAM</span>
+        <span class="tag">CodePipeline / CodeBuild / CodeDeploy</span>
+        <span class="tag">Step Functions</span>
+        <span class="tag">Kinesis Firehose</span>
+      </div>
+      <h3>IaC</h3>
+      <div class="tags">
+        <span class="tag purple">Terraform（45モジュール）</span>
+        <span class="tag purple">GitHub Actions</span>
+      </div>
+    </div>
+    <div class="col">
+      <h3>監視</h3>
+      <div class="tags">
+        <span class="tag green">New Relic</span>
+        <span class="tag green">Sysdig</span>
+        <span class="tag green">CloudWatch</span>
+      </div>
+      <h3>ドキュメント・管理</h3>
+      <div class="tags">
+        <span class="tag amber">Confluence</span>
+        <span class="tag amber">draw.io</span>
+        <span class="tag amber">Jira</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 6: NTTデジタル 開発体制 -->
+<div class="slide" data-slide="6">
+  <h2>開発体制・手法</h2>
+  <div class="two-col">
+    <div class="col">
+      <h3>チーム構成（技術レイヤー別）</h3>
+      <ul>
+        <li><span class="highlight">インフラチーム</span></li>
+        <li>バックエンドチーム</li>
+        <li>ブロックチェーンチーム</li>
+        <li>テストチーム</li>
+        <li>運用チーム</li>
+      </ul>
+      <h3>開発スタイル</h3>
+      <ul>
+        <li>インフラは<span class="highlight">Terraformで構築</span></li>
+        <li>設計書・提案資料は<span class="highlight">Confluenceに文書化</span></li>
+        <li>ドキュメントは基本的に<span class="highlight">人力で作成</span></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>自分の役割</h3>
+      <ul>
+        <li>タスク配分・技術判断</li>
+        <li>顧客・DevPM・他チームとの技術折衝</li>
+        <li>設計論点の整理 → 資料作成 → 意思決定</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 7: NTTデジタル 技術的なポイント -->
+<div class="slide" data-slide="7">
+  <h2>技術的なポイント</h2>
+  <ul>
+    <li><span class="highlight">5環境×マルチVPC</span>の同時並行構築（dev / test / prod を並行でリリース）</li>
+    <li><span class="highlight">ゼロトラストベース</span>のセキュリティ設計：VPC間通信の最小権限制御、Private CA/ACMによる証明書管理</li>
+    <li>Terraformモジュール<span class="highlight">45種類</span>、GitHub Actions（OIDC認証）によるPlan/Apply自動化</li>
+    <li>New Relic + Sysdig + CloudWatchを組み合わせた<span class="highlight">監視基盤</span></li>
+    <li>メインネット / テストネットの分離を含むブロックチェーンノードの<span class="highlight">冗長構成</span></li>
+  </ul>
+</div>
+
+<!-- Slide 8: Section 2 -->
+<div class="slide slide-section" data-slide="8">
+  <div class="section-number">Section 02</div>
+  <h2>美容室チェーン案件</h2>
+  <div class="section-sub">大手美容室チェーン 基幹システム構築</div>
+</div>
+
+<!-- Slide 9: 美容室 概要 -->
+<div class="slide" data-slide="9">
+  <h2>プロジェクト概要</h2>
+  <ul>
+    <li><span class="highlight">500店舗超・100社以上</span>のオーナー企業が利用するマルチテナント型SaaS基幹システムの新規構築</li>
+    <li>予約・会計・顧客・在庫・スタッフ管理・分析等を統合</li>
+    <li><span class="highlight">DDD（ドメイン駆動設計）</span>ベースのモジュラーモノリス（28バウンデッドコンテキスト）</li>
+    <li><span class="highlight">AI駆動開発体制</span>：PMがAIで設計書を高速生成 → ドメインオーナーがレビュー・精緻化</li>
+    <li>2025年11月〜参画。現在は要件定義・基本設計フェーズ → 2026年3月より開発フェーズへ</li>
+  </ul>
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-value">500+</span>
+      <span class="stat-label">店舗</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">28</span>
+      <span class="stat-label">バウンデッドコンテキスト</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">DDD</span>
+      <span class="stat-label">モジュラーモノリス</span>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 10: 美容室 技術スタック -->
+<div class="slide" data-slide="10">
+  <h2>技術スタック</h2>
+  <div class="two-col">
+    <div class="col">
+      <h3>AWS</h3>
+      <div class="tags">
+        <span class="tag">ECS Fargate（Graviton）</span>
+        <span class="tag">Aurora PostgreSQL</span>
+        <span class="tag">ElastiCache Valkey</span>
+        <span class="tag">Redshift Zero-ETL</span>
+        <span class="tag">Lambda</span>
+        <span class="tag">CloudFront</span>
+        <span class="tag">ALB</span>
+        <span class="tag">WAF</span>
+        <span class="tag">Route53</span>
+        <span class="tag">S3</span>
+        <span class="tag">SNS/SQS</span>
+        <span class="tag">KMS</span>
+      </div>
+      <h3>IaC</h3>
+      <div class="tags">
+        <span class="tag purple">Terraform（構築フェーズで使用予定）</span>
+      </div>
+    </div>
+    <div class="col">
+      <h3>設計手法</h3>
+      <div class="tags">
+        <span class="tag green">DDD（ドメイン駆動設計）</span>
+        <span class="tag green">モジュラーモノリス</span>
+        <span class="tag green">28バウンデッドコンテキスト</span>
+      </div>
+      <h3>AI・ツール</h3>
+      <div class="tags">
+        <span class="tag amber">Claude Code</span>
+        <span class="tag amber">NotebookLM</span>
+        <span class="tag amber">Gemini（会議要約）</span>
+        <span class="tag amber">draw.io</span>
+        <span class="tag amber">GitHub</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 11: 美容室 開発体制 -->
+<div class="slide" data-slide="11">
+  <h2>開発体制・手法</h2>
+  <div class="two-col">
+    <div class="col">
+      <h3>ドメインオーナー制</h3>
+      <ul>
+        <li>技術レイヤー別のチーム制ではない</li>
+        <li>各<span class="highlight">ドメインを担当する人</span>で分担</li>
+        <li>自分の担当：<span class="highlight">インフラ・会計・認可</span></li>
+        <li>ドメインオーナーが品質・整合性の最終責任を持つ</li>
+      </ul>
+      <h3>AI駆動の開発フロー</h3>
+      <ul>
+        <li>PMがAIで設計書・仕様書を高速生成</li>
+        <li>ドメインオーナーがレビュー・精緻化</li>
+        <li>先方とのやり取り・合意形成</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>担当領域の例</h3>
+      <ul>
+        <li>AWSインフラ全体構成の設計</li>
+        <li>会計ドメインの仕様レビュー</li>
+        <li>全ドメイン横断の認可・権限設計</li>
+        <li>AWS運用コストの見積もり</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 12: Section 3 -->
+<div class="slide slide-section" data-slide="12">
+  <div class="section-number">Section 03</div>
+  <h2>半年で変わったこと</h2>
+  <div class="section-sub">AI活用と開発スタイルの進化</div>
+</div>
+
+<!-- Slide 13: Before/After ドキュメント・AI -->
+<div class="slide" data-slide="13">
+  <h2>AI活用の変化</h2>
+  <div class="compare">
+    <div class="compare-box before">
+      <span class="box-label before-label">Before — NTTデジタル</span>
+      <h3>ほぼ人力の開発</h3>
+      <ul>
+        <li>設計書・提案資料は<span class="highlight">Confluenceで人力作成</span></li>
+        <li>AIはCursor + ChatGPTを補助的に利用</li>
+        <li>Terraformコード補完が主な用途</li>
+        <li>議事録も手動で作成</li>
+      </ul>
+    </div>
+    <div class="compare-arrow">→</div>
+    <div class="compare-box after">
+      <span class="box-label after-label">After — 美容室チェーン</span>
+      <h3>AI駆動の開発</h3>
+      <ul>
+        <li>設計書・仕様書を<span class="highlight">AIで生成 → レビュー</span></li>
+        <li>Claude Codeで仕様検証・ドメインモデル設計</li>
+        <li>Google Meet × <span class="highlight">Geminiで会議要約を自動化</span></li>
+        <li><span class="highlight">NotebookLM</span>にナレッジを集約</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 14: Before/After チーム・役割 -->
+<div class="slide" data-slide="14">
+  <h2>チーム構造の変化</h2>
+  <div class="compare">
+    <div class="compare-box before">
+      <span class="box-label before-label">Before — NTTデジタル</span>
+      <h3>技術レイヤー別チーム制</h3>
+      <ul>
+        <li>インフラ / バックエンド / ブロックチェーン / テスト / 運用</li>
+        <li>各チームにリーダーがいる構造</li>
+        <li>担当範囲は<span class="highlight">技術領域ごと</span>に分かれる</li>
+        <li>コードを書く比重が大きい</li>
+      </ul>
+    </div>
+    <div class="compare-arrow">→</div>
+    <div class="compare-box after">
+      <span class="box-label after-label">After — 美容室チェーン</span>
+      <h3>ドメインオーナー制</h3>
+      <ul>
+        <li>各ドメインの担当者で分担</li>
+        <li>チーム制ではなくドメイン単位の責任</li>
+        <li>担当範囲が<span class="highlight">技術横断</span>になる</li>
+        <li>設計判断・レビューの比重が大きい</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 15: まとめに感じること -->
+<div class="slide" data-slide="15">
+  <h2>半年やってみて感じること</h2>
+  <ul>
+    <li>AIの進化で、ドキュメント作成・設計の<span class="highlight">スピード感がまるで違う</span></li>
+    <li>その分、<span class="highlight">レビューや設計判断の重要性</span>が増している実感がある</li>
+    <li>チーム制 → ドメインオーナー制で、技術領域を跨いで担当するようになった</li>
+    <li>会議の要約やナレッジ管理も自動化が進んで、<span class="highlight">情報の流れ方自体が変わった</span></li>
+  </ul>
+  <div class="emphasis" style="margin-top: 32px;">
+    半年前と比べて、開発の進め方がかなり変わってきているなと感じています
+  </div>
+</div>
+
+<!-- Slide 16: まとめ -->
+<div class="slide" data-slide="16">
+  <h2>まとめ</h2>
+  <div class="summary-grid">
+    <div class="summary-card">
+      <h3>NTTデジタル</h3>
+      <ul>
+        <li>Web3ノードサービスを6〜7ヶ月で本番リリース</li>
+        <li>5環境×マルチVPCの大規模インフラ</li>
+        <li>Terraform 45モジュール</li>
+      </ul>
+    </div>
+    <div class="summary-card">
+      <h3>美容室チェーン</h3>
+      <ul>
+        <li>500店舗超のSaaS基幹システム</li>
+        <li>DDD × AI駆動開発</li>
+        <li>ドメインオーナー制で運営</li>
+      </ul>
+    </div>
+    <div class="summary-card">
+      <h3>この半年の変化</h3>
+      <ul>
+        <li>AI活用が補助 → 主軸に</li>
+        <li>チーム制 → ドメインオーナー制</li>
+        <li>コードを書く → 設計判断・品質担保</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+  <button onclick="prevSlide()">←</button>
+  <span class="page-indicator" id="pageIndicator">1 / 16</span>
+  <button onclick="nextSlide()">→</button>
+</div>
+
+<script>
+  let current = 1;
+  const total = document.querySelectorAll('.slide').length;
+
+  function showSlide(n) {
+    if (n < 1 || n > total) return;
+    current = n;
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    document.querySelector(`[data-slide="${n}"]`).classList.add('active');
+    document.getElementById('pageIndicator').textContent = `${n} / ${total}`;
+    document.getElementById('progress').style.width = `${(n / total) * 100}%`;
+  }
+
+  function nextSlide() { showSlide(current + 1); }
+  function prevSlide() { showSlide(current - 1); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      nextSlide();
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
+      e.preventDefault();
+      prevSlide();
+    }
+  });
+
+  // Touch support
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+  document.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      diff > 0 ? nextSlide() : prevSlide();
+    }
+  });
+
+  showSlide(1);
+</script>
+
+</body>
+</html>
