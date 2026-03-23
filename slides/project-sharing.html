@@ -122,38 +122,6 @@
     font-weight: 700;
   }
 
-  .tag {
-    display: inline-block;
-    background: #1e3a5f;
-    color: #60a5fa;
-    padding: 4px 14px;
-    border-radius: 20px;
-    font-size: 0.85em;
-    margin: 4px 4px;
-  }
-
-  .tag.purple {
-    background: #2e1065;
-    color: #a78bfa;
-  }
-
-  .tag.green {
-    background: #14532d;
-    color: #4ade80;
-  }
-
-  .tag.amber {
-    background: #451a03;
-    color: #fbbf24;
-  }
-
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin: 12px 0;
-  }
-
   /* Two column layout */
   .two-col {
     display: grid;
@@ -338,34 +306,6 @@
     color: #64748b;
     margin-left: auto;
   }
-
-  /* Summary slide */
-  .summary-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 24px;
-    flex: 1;
-    align-items: start;
-  }
-
-  .summary-card {
-    background: #1e293b;
-    border-radius: 16px;
-    padding: 28px;
-    border: 1px solid #334155;
-    height: 100%;
-  }
-
-  .summary-card h3 {
-    margin-top: 0;
-    font-size: 1.1em;
-    margin-bottom: 16px;
-  }
-
-  .summary-card ul li {
-    font-size: 0.95em;
-    line-height: 1.6;
-  }
 </style>
 </head>
 <body>
@@ -379,279 +319,136 @@
   <div class="meta">2026.03.24 / 田中雄介 / プロジェクト共有会</div>
 </div>
 
-<!-- Slide 2: Agenda -->
+<!-- Slide 2: Hook（つかみ） -->
 <div class="slide" data-slide="2">
+  <h2>半年前と今</h2>
+  <div class="compare">
+    <div class="compare-box before">
+      <span class="box-label before-label">半年前</span>
+      <h3>NTTデジタル案件のころ</h3>
+      <ul>
+        <li>設計書はConfluenceに<span class="highlight">手書き</span></li>
+        <li>AIはコード補完やドキュメント作成に使う程度</li>
+        <li>「インフラ担当」としてチームで動く</li>
+      </ul>
+    </div>
+    <div class="compare-arrow">→</div>
+    <div class="compare-box after">
+      <span class="box-label after-label">今</span>
+      <h3>美容室チェーン案件</h3>
+      <ul>
+        <li><span class="highlight">AIであらゆるドキュメントを生成</span> → レビュー</li>
+        <li>Claude Codeで仕様検証まで</li>
+        <li>「ドメインオーナー」として<span class="highlight">技術横断</span>で判断</li>
+      </ul>
+    </div>
+  </div>
+  <div class="emphasis" style="margin-top: 24px; text-align: center;">
+    この半年で、何が変わったのか？
+  </div>
+</div>
+
+<!-- Slide 3: Agenda -->
+<div class="slide" data-slide="3">
   <h2>今日話すこと</h2>
   <div class="agenda-item">
     <div class="agenda-num">1</div>
     <div class="agenda-text">NTTデジタル案件の振り返り</div>
-    <div class="agenda-time">〜5分</div>
+    <div class="agenda-time">〜4分</div>
   </div>
   <div class="agenda-item">
     <div class="agenda-num">2</div>
     <div class="agenda-text">美容室チェーン案件の紹介</div>
-    <div class="agenda-time">〜5分</div>
+    <div class="agenda-time">〜4分</div>
   </div>
   <div class="agenda-item">
     <div class="agenda-num">3</div>
     <div class="agenda-text">半年で変わったこと：AI活用と開発スタイルの進化</div>
-    <div class="agenda-time">〜5分</div>
+    <div class="agenda-time">〜7分</div>
   </div>
 </div>
 
-<!-- Slide 3: Section 1 -->
-<div class="slide slide-section" data-slide="3">
+<!-- Slide 4: Section 1 -->
+<div class="slide slide-section" data-slide="4">
   <div class="section-number">Section 01</div>
   <h2>NTTデジタル案件</h2>
   <div class="section-sub">エンタープライズ向け Web3 ノードサービス構築</div>
 </div>
 
-<!-- Slide 4: NTTデジタル概要 -->
-<div class="slide" data-slide="4">
+<!-- Slide 5: NTTデジタル概要 -->
+<div class="slide" data-slide="5">
   <h2>プロジェクト概要</h2>
   <ul>
     <li>エンタープライズ向け<span class="highlight">ブロックチェーンノードのマネージドサービス</span>を新規構築</li>
-    <li>事業者・開発者がAPI経由でBitcoin/EthereumのRPCエンドポイントを利用可能にする</li>
-    <li><span class="highlight">5環境</span>（dev / test1 / test2 / prod1 / prod2）× マルチVPC構成</li>
-    <li>組織約30名。インフラチームとして参画</li>
-    <li><span class="highlight">6〜7ヶ月</span>で本番リリース完遂 → 運用引き継ぎまで担当</li>
+    <li>事業者がAPI経由でBitcoin/EthereumのRPCエンドポイントを利用可能にする<br><small style="color:#94a3b8; font-size:0.85em;">※ RPCエンドポイント＝ブロックチェーンネットワークへリクエストを送るためのAPI接続先</small></li>
+    <li><span class="highlight">2025年4月〜10月</span>の約7ヶ月間</li>
+    <li>5環境（dev / test1 / test2 / prod1 / prod2）× マルチVPC構成を<span class="highlight">同時並行で構築</span></li>
+    <li><span class="highlight">ウォーターフォール</span>で構築 → リリース後スクラムに移行</li>
+    <li>本番リリース完遂 → 運用引き継ぎまで担当</li>
   </ul>
-  <div class="stats">
-    <div class="stat">
-      <span class="stat-value">30名</span>
-      <span class="stat-label">プロジェクト規模</span>
-    </div>
-    <div class="stat">
-      <span class="stat-value">5環境</span>
-      <span class="stat-label">マルチVPC</span>
-    </div>
-    <div class="stat">
-      <span class="stat-value">6〜7ヶ月</span>
-      <span class="stat-label">リリースまで</span>
-    </div>
-  </div>
 </div>
 
-<!-- Slide 5: NTTデジタル 技術スタック -->
-<div class="slide" data-slide="5">
-  <h2>技術スタック</h2>
-  <div class="two-col">
-    <div class="col">
-      <h3>AWS</h3>
-      <div class="tags">
-        <span class="tag">VPC</span>
-        <span class="tag">EC2</span>
-        <span class="tag">ECS Fargate</span>
-        <span class="tag">Aurora PostgreSQL</span>
-        <span class="tag">Lambda</span>
-        <span class="tag">API Gateway</span>
-        <span class="tag">ALB</span>
-        <span class="tag">NLB</span>
-        <span class="tag">S3</span>
-        <span class="tag">CloudFront</span>
-        <span class="tag">Route53</span>
-        <span class="tag">WAF</span>
-        <span class="tag">KMS</span>
-        <span class="tag">Secrets Manager</span>
-        <span class="tag">ACM / Private CA</span>
-        <span class="tag">IAM</span>
-        <span class="tag">CodePipeline / CodeBuild / CodeDeploy</span>
-        <span class="tag">Step Functions</span>
-        <span class="tag">Kinesis Firehose</span>
-      </div>
-      <h3>IaC</h3>
-      <div class="tags">
-        <span class="tag purple">Terraform（45モジュール）</span>
-        <span class="tag purple">GitHub Actions</span>
-      </div>
-    </div>
-    <div class="col">
-      <h3>監視</h3>
-      <div class="tags">
-        <span class="tag green">New Relic</span>
-        <span class="tag green">Sysdig</span>
-        <span class="tag green">CloudWatch</span>
-      </div>
-      <h3>ドキュメント・管理</h3>
-      <div class="tags">
-        <span class="tag amber">Confluence</span>
-        <span class="tag amber">draw.io</span>
-        <span class="tag amber">Jira</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Slide 6: NTTデジタル 開発体制 -->
+<!-- Slide 6: NTTデジタル 自分の役割 -->
 <div class="slide" data-slide="6">
-  <h2>開発体制・手法</h2>
-  <div class="two-col">
-    <div class="col">
-      <h3>チーム構成（技術レイヤー別）</h3>
-      <ul>
-        <li><span class="highlight">インフラチーム</span></li>
-        <li>バックエンドチーム</li>
-        <li>ブロックチェーンチーム</li>
-        <li>テストチーム</li>
-        <li>運用チーム</li>
-      </ul>
-      <h3>開発スタイル</h3>
-      <ul>
-        <li>インフラは<span class="highlight">Terraformで構築</span></li>
-        <li>設計書・提案資料は<span class="highlight">Confluenceに文書化</span></li>
-        <li>ドキュメントは基本的に<span class="highlight">人力で作成</span></li>
-      </ul>
-    </div>
-    <div class="col">
-      <h3>自分の役割</h3>
-      <ul>
-        <li>タスク配分・技術判断</li>
-        <li>顧客・DevPM・他チームとの技術折衝</li>
-        <li>設計論点の整理 → 資料作成 → 意思決定</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<!-- Slide 7: NTTデジタル 技術的なポイント -->
-<div class="slide" data-slide="7">
-  <h2>技術的なポイント</h2>
+  <h2>自分の役割</h2>
   <ul>
-    <li><span class="highlight">5環境×マルチVPC</span>の同時並行構築（dev / test / prod を並行でリリース）</li>
-    <li><span class="highlight">ゼロトラストベース</span>のセキュリティ設計：VPC間通信の最小権限制御、Private CA/ACMによる証明書管理</li>
-    <li>Terraformモジュール<span class="highlight">45種類</span>、GitHub Actions（OIDC認証）によるPlan/Apply自動化</li>
-    <li>New Relic + Sysdig + CloudWatchを組み合わせた<span class="highlight">監視基盤</span></li>
-    <li>メインネット / テストネットの分離を含むブロックチェーンノードの<span class="highlight">冗長構成</span></li>
+    <li><span class="highlight">インフラチームリーダー</span>（最大6名）としてタスク配分・技術判断</li>
+    <li>顧客・DevPM・他チームとの<span class="highlight">技術折衝</span></li>
+    <li>設計根拠をConfluenceに文書化し、論理的に提案するスタイル</li>
+    <li><span class="highlight">主要コンポーネントの構築</span>（API Gateway / WAF / Lambda / 監視基盤 など）</li>
   </ul>
 </div>
 
-<!-- Slide 8: Section 2 -->
-<div class="slide slide-section" data-slide="8">
+<!-- Slide 7: Section 2 -->
+<div class="slide slide-section" data-slide="7">
   <div class="section-number">Section 02</div>
   <h2>美容室チェーン案件</h2>
   <div class="section-sub">大手美容室チェーン 基幹システム構築</div>
 </div>
 
-<!-- Slide 9: 美容室 概要 -->
-<div class="slide" data-slide="9">
+<!-- Slide 8: 美容室 概要 -->
+<div class="slide" data-slide="8">
   <h2>プロジェクト概要</h2>
   <ul>
     <li><span class="highlight">500店舗超・100社以上</span>のオーナー企業が利用するマルチテナント型SaaS基幹システムの新規構築</li>
     <li>予約・会計・顧客・在庫・スタッフ管理・分析等を統合</li>
-    <li><span class="highlight">DDD（ドメイン駆動設計）</span>ベースのモジュラーモノリス（28バウンデッドコンテキスト）</li>
-    <li><span class="highlight">AI駆動開発体制</span>：PMがAIで設計書を高速生成 → ドメインオーナーがレビュー・精緻化</li>
-    <li>2025年11月〜参画。現在は要件定義・基本設計フェーズ → 2026年3月より開発フェーズへ</li>
+    <li><span class="highlight">DDD（ドメイン駆動設計）</span>ベースのモジュラーモノリス</li>
+    <li>設計書・仕様書などあらゆるドキュメントを<span class="highlight">GitHubで一元管理</span></li>
+    <li><span class="highlight">AI駆動開発体制</span>：AIでドキュメントを高速生成 → ドメインオーナーがレビュー・顧客と合意形成</li>
+    <li>2025年10月〜参画。要件定義・基本設計フェーズ → 2026年3月より開発フェーズへ</li>
   </ul>
-  <div class="stats">
-    <div class="stat">
-      <span class="stat-value">500+</span>
-      <span class="stat-label">店舗</span>
-    </div>
-    <div class="stat">
-      <span class="stat-value">28</span>
-      <span class="stat-label">バウンデッドコンテキスト</span>
-    </div>
-    <div class="stat">
-      <span class="stat-value">DDD</span>
-      <span class="stat-label">モジュラーモノリス</span>
-    </div>
-  </div>
 </div>
 
-<!-- Slide 10: 美容室 技術スタック -->
-<div class="slide" data-slide="10">
-  <h2>技術スタック</h2>
-  <div class="two-col">
-    <div class="col">
-      <h3>AWS</h3>
-      <div class="tags">
-        <span class="tag">ECS Fargate（Graviton）</span>
-        <span class="tag">Aurora PostgreSQL</span>
-        <span class="tag">ElastiCache Valkey</span>
-        <span class="tag">Redshift Zero-ETL</span>
-        <span class="tag">Lambda</span>
-        <span class="tag">CloudFront</span>
-        <span class="tag">ALB</span>
-        <span class="tag">WAF</span>
-        <span class="tag">Route53</span>
-        <span class="tag">S3</span>
-        <span class="tag">SNS/SQS</span>
-        <span class="tag">KMS</span>
-      </div>
-      <h3>IaC</h3>
-      <div class="tags">
-        <span class="tag purple">Terraform（構築フェーズで使用予定）</span>
-      </div>
-    </div>
-    <div class="col">
-      <h3>設計手法</h3>
-      <div class="tags">
-        <span class="tag green">DDD（ドメイン駆動設計）</span>
-        <span class="tag green">モジュラーモノリス</span>
-        <span class="tag green">28バウンデッドコンテキスト</span>
-      </div>
-      <h3>AI・ツール</h3>
-      <div class="tags">
-        <span class="tag amber">Claude Code</span>
-        <span class="tag amber">NotebookLM</span>
-        <span class="tag amber">Gemini（会議要約）</span>
-        <span class="tag amber">draw.io</span>
-        <span class="tag amber">GitHub</span>
-      </div>
-    </div>
-  </div>
+<!-- Slide 9: 美容室 自分の役割 -->
+<div class="slide" data-slide="9">
+  <h2>自分の役割</h2>
+  <ul>
+    <li><span class="highlight">インフラ担当</span>しつつ、<span class="highlight">会計ドメイン</span>も担当</li>
+    <li>AWSインフラ全体構成の設計</li>
+    <li>会計ドメインの仕様レビュー・顧客との合意形成</li>
+    <li>AI生成ドキュメントのレビュー・品質担保</li>
+  </ul>
 </div>
 
-<!-- Slide 11: 美容室 開発体制 -->
-<div class="slide" data-slide="11">
-  <h2>開発体制・手法</h2>
-  <div class="two-col">
-    <div class="col">
-      <h3>ドメインオーナー制</h3>
-      <ul>
-        <li>技術レイヤー別のチーム制ではない</li>
-        <li>各<span class="highlight">ドメインを担当する人</span>で分担</li>
-        <li>自分の担当：<span class="highlight">インフラ・会計・認可</span></li>
-        <li>ドメインオーナーが品質・整合性の最終責任を持つ</li>
-      </ul>
-      <h3>AI駆動の開発フロー</h3>
-      <ul>
-        <li>PMがAIで設計書・仕様書を高速生成</li>
-        <li>ドメインオーナーがレビュー・精緻化</li>
-        <li>先方とのやり取り・合意形成</li>
-      </ul>
-    </div>
-    <div class="col">
-      <h3>担当領域の例</h3>
-      <ul>
-        <li>AWSインフラ全体構成の設計</li>
-        <li>会計ドメインの仕様レビュー</li>
-        <li>全ドメイン横断の認可・権限設計</li>
-        <li>AWS運用コストの見積もり</li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<!-- Slide 12: Section 3 -->
-<div class="slide slide-section" data-slide="12">
+<!-- Slide 10: Section 3 -->
+<div class="slide slide-section" data-slide="10">
   <div class="section-number">Section 03</div>
   <h2>半年で変わったこと</h2>
   <div class="section-sub">AI活用と開発スタイルの進化</div>
 </div>
 
-<!-- Slide 13: Before/After ドキュメント・AI -->
-<div class="slide" data-slide="13">
+<!-- Slide 11: Before/After AI活用 -->
+<div class="slide" data-slide="11">
   <h2>AI活用の変化</h2>
   <div class="compare">
     <div class="compare-box before">
       <span class="box-label before-label">Before — NTTデジタル</span>
       <h3>ほぼ人力の開発</h3>
       <ul>
-        <li>設計書・提案資料は<span class="highlight">Confluenceで人力作成</span></li>
-        <li>AIはCursor + ChatGPTを補助的に利用</li>
-        <li>Terraformコード補完が主な用途</li>
-        <li>議事録も手動で作成</li>
+        <li>設計書はConfluence、コードはGitHub → <span class="highlight">分散管理</span></li>
+        <li>AIはCursor + ChatGPT等を個人で補助的に利用</li>
+        <li>コード補完やドキュメント作成が主な用途</li>
+        <li>会議の記録は各自で対応（録画など）</li>
       </ul>
     </div>
     <div class="compare-arrow">→</div>
@@ -660,7 +457,7 @@
       <h3>AI駆動の開発</h3>
       <ul>
         <li>設計書・仕様書を<span class="highlight">AIで生成 → レビュー</span></li>
-        <li>Claude Codeで仕様検証・ドメインモデル設計</li>
+        <li>ドキュメントを<span class="highlight">GitHubで一元管理</span> → Claude Codeがリポジトリ横断で活用</li>
         <li>Google Meet × <span class="highlight">Geminiで会議要約を自動化</span></li>
         <li><span class="highlight">NotebookLM</span>にナレッジを集約</li>
       </ul>
@@ -668,83 +465,54 @@
   </div>
 </div>
 
-<!-- Slide 14: Before/After チーム・役割 -->
-<div class="slide" data-slide="14">
-  <h2>チーム構造の変化</h2>
+<!-- Slide 12: Before/After 働き方・役割 -->
+<div class="slide" data-slide="12">
+  <h2>働き方・役割の変化</h2>
   <div class="compare">
     <div class="compare-box before">
       <span class="box-label before-label">Before — NTTデジタル</span>
-      <h3>技術レイヤー別チーム制</h3>
+      <h3>チーム制 × ウォーターフォール</h3>
       <ul>
-        <li>インフラ / バックエンド / ブロックチェーン / テスト / 運用</li>
-        <li>各チームにリーダーがいる構造</li>
-        <li>担当範囲は<span class="highlight">技術領域ごと</span>に分かれる</li>
-        <li>コードを書く比重が大きい</li>
+        <li>技術レイヤー別チーム制（インフラ / BE / BC / テスト / 運用）</li>
+        <li>ウォーターフォールで構築、リリース後スクラムへ</li>
+        <li>担当範囲は<span class="highlight">インフラ領域に特化</span></li>
+        <li>コードやドキュメントを自分で書く比重が大きい</li>
       </ul>
     </div>
     <div class="compare-arrow">→</div>
     <div class="compare-box after">
       <span class="box-label after-label">After — 美容室チェーン</span>
-      <h3>ドメインオーナー制</h3>
+      <h3>ドメインオーナー制 × AI駆動</h3>
       <ul>
-        <li>各ドメインの担当者で分担</li>
-        <li>チーム制ではなくドメイン単位の責任</li>
-        <li>担当範囲が<span class="highlight">技術横断</span>になる</li>
+        <li>ドメインオーナー制（各ドメインの担当者で分担）</li>
+        <li>DDD × AI駆動の開発フロー</li>
+        <li>担当範囲が<span class="highlight">技術横断</span>（インフラ + 会計）</li>
         <li>設計判断・レビューの比重が大きい</li>
       </ul>
     </div>
   </div>
 </div>
 
-<!-- Slide 15: まとめに感じること -->
-<div class="slide" data-slide="15">
-  <h2>半年やってみて感じること</h2>
+<!-- Slide 13: 半年やってみて感じること -->
+<div class="slide" data-slide="13">
+  <h2>まとめ</h2>
   <ul>
     <li>AIの進化で、ドキュメント作成・設計の<span class="highlight">スピード感がまるで違う</span></li>
     <li>その分、<span class="highlight">レビューや設計判断の重要性</span>が増している実感がある</li>
-    <li>チーム制 → ドメインオーナー制で、技術領域を跨いで担当するようになった</li>
+    <li>チーム制 → ドメインオーナー制で、<span class="highlight">技術領域を跨いで担当</span>するようになった</li>
     <li>会議の要約やナレッジ管理も自動化が進んで、<span class="highlight">情報の流れ方自体が変わった</span></li>
+    <li>「何を作るべきか」「なぜこの設計か」を判断し、合意形成する力がより問われるようになった</li>
   </ul>
   <div class="emphasis" style="margin-top: 32px;">
-    半年前と比べて、開発の進め方がかなり変わってきているなと感じています
-  </div>
-</div>
-
-<!-- Slide 16: まとめ -->
-<div class="slide" data-slide="16">
-  <h2>まとめ</h2>
-  <div class="summary-grid">
-    <div class="summary-card">
-      <h3>NTTデジタル</h3>
-      <ul>
-        <li>Web3ノードサービスを6〜7ヶ月で本番リリース</li>
-        <li>5環境×マルチVPCの大規模インフラ</li>
-        <li>Terraform 45モジュール</li>
-      </ul>
-    </div>
-    <div class="summary-card">
-      <h3>美容室チェーン</h3>
-      <ul>
-        <li>500店舗超のSaaS基幹システム</li>
-        <li>DDD × AI駆動開発</li>
-        <li>ドメインオーナー制で運営</li>
-      </ul>
-    </div>
-    <div class="summary-card">
-      <h3>この半年の変化</h3>
-      <ul>
-        <li>AI活用が補助 → 主軸に</li>
-        <li>チーム制 → ドメインオーナー制</li>
-        <li>コードを書く → 設計判断・品質担保</li>
-      </ul>
-    </div>
+    「コードを書く力」から「設計を判断し、合意形成する力」へ<br>
+    — エンジニアとして求められることの重心が変わってきている
   </div>
 </div>
 
 <!-- Navigation -->
 <div class="nav">
   <button onclick="prevSlide()">←</button>
-  <span class="page-indicator" id="pageIndicator">1 / 16</span>
+  <span class="page-indicator" id="pageIndicator">1 / 13</span>
   <button onclick="nextSlide()">→</button>
 </div>
 
