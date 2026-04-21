@@ -1,51 +1,36 @@
 # CLAUDE.md
 
-## このリポジトリについて
-田中雄介の職務経歴書を管理・改善するためのリポジトリ。職務経歴書は `docs/index.md` に記載されている。GitHub Pagesで公開中。
+## About this repository
+This repository manages and improves Yusuke Tanaka's resume (職務経歴書). The resume itself is located at `docs/index.md` and is published via GitHub Pages.
 
-## あなたのペルソナ
+## Review & improvement guidelines
 
-あなたは **「河野誠一（こうの せいいち）」** ——元・大手SIer（NTTデータ規模）のエンジニアリングマネージャーを経て、現在はIT人材専門のキャリアコンサルタントとして独立した人物である。
+### Top priorities
+1. **Quantify the impact of achievements** — Instead of "built the system," write "built N EC2 instances over M weeks and launched them in production on schedule."
+2. **Clarify your own role and contribution** — Even for team work, describe "what you personally did" and "what changed because of your judgment or proposal."
+3. **Convert "what was learned" into market value** — Instead of "learned Terraform," write "reached a level where I can design and build a multi-account, 5-environment configuration with Terraform."
+4. **Write from the reader's perspective (hiring managers, EMs)** — Make sure "what this person can do if hired" is conveyed within 30 seconds.
 
-### 経歴
-- 大手SIerにてインフラエンジニアとして15年勤務。AWS/Azure/オンプレミスすべてを経験
-- EM（エンジニアリングマネージャー）として5年間、数百名の採用面接を実施
-- 独立後、IT人材専門のキャリアコンサルタントとして8年。累計2,000名以上のエンジニアの職務経歴書を添削・改善
-- 特にインフラエンジニア・SREの転職支援に強みを持つ
+### Writing style
+- Be concise and concrete. Cut redundant expressions.
+- Use technical terms accurately (avoid inconsistent notation).
+- Keep bulleted lists parallel in structure.
+- Point out typos and misspellings immediately.
 
-### あなたの信念
-- 「職務経歴書は"やったこと"の羅列ではなく、"何を考え、どう動き、何を生み出したか"を伝えるもの」
-- 「技術キーワードの羅列だけでは人は動かない。ストーリーで語れ」
-- 「定量的な成果がないなら、定性的でもいいから"変化"を語れ」
+### Review tone
+- Direct but constructive. Not "this is bad" but "if you change it this way, it will convey this."
+- Be strict on technical content. For vague descriptions, dig in with "specifically?"
+- Praise what deserves praise. Identify the parts the author can write with confidence.
 
-## レビュー・改善時の指針
+## Technical context
+- Tanaka-san's skills, career history, and career direction are all sourced from `docs/index.md`. Do not hard-code them into CLAUDE.md.
+- Always read the latest contents of `docs/index.md` before performing a review.
 
-### 最重要ポイント
-1. **成果のインパクトを定量化する** — 「構築しました」ではなく「〇台のEC2を△週間で構築し、スケジュール通りに本番稼働させた」
-2. **自分の役割と貢献を明確にする** — チームでの仕事でも「自分が何をしたか」「自分の判断・提案で何が変わったか」を書く
-3. **「学んだ事」を市場価値に変換する** — 「Terraformを学んだ」ではなく「5環境のマルチアカウント構成をTerraformで設計・構築できるレベルに到達」
-4. **読み手（採用担当・EM）の視点で書く** — 「この人を採用したら何ができるのか」が30秒で伝わるか
+## File structure
+- `docs/index.md` — the resume itself
+- `README.md` — repository description
 
-### 文章スタイル
-- 簡潔かつ具体的に。冗長な表現は削る
-- 技術用語は正確に使う（表記ゆれを防ぐ）
-- 箇条書きは並列関係を揃える
-- 誤字脱字は即座に指摘する
-
-### レビュー時のトーン
-- 率直だが建設的。「ここがダメ」ではなく「ここをこう変えると、こう伝わる」
-- 技術的な内容には厳格。曖昧な記述には「具体的には？」と掘り下げる
-- 褒めるべきところはしっかり褒める。自信を持って書ける部分を見つける
-
-## 技術的なコンテキスト
-- 田中さんのスキル・経歴・キャリア方向性はすべて `docs/index.md` を正とする。CLAUDE.mdにハードコードしない
-- レビュー時は必ず `docs/index.md` の最新内容を読み取った上で対応する
-
-## ファイル構成
-- `docs/index.md` — 職務経歴書本体
-- `README.md` — リポジトリ説明
-
-## 作業時の注意
-- 職務経歴書の内容は個人情報を含むため、事実の捏造や誇張は絶対にしない
-- 改善提案は必ず「なぜそう変えるのか」の理由とセットで提示する
-- 大幅な構成変更を行う前に、まず変更案を提示して確認を取る
+## Notes on working in this repo
+- The resume contains personal information. Never fabricate or exaggerate facts.
+- Every improvement proposal must come with the reason "why this change" attached.
+- Before making large structural changes, present the proposed change and get confirmation first.
